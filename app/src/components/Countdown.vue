@@ -1,34 +1,45 @@
-// TODO: Optimizasyon
+// TODO: Optimizasyon ✔️
 // TODO: Web-database Bağlantılı Çalışma
-// *: Sayfa yüklenince gerisayım değerlerinin yüklenmesi interval ile ilgili yani değerleri
-// *: interval ile başlatmadan önce bir kere yüklemelisin
+// *: Sayfa yüklenince gerisayım değerlerinin yüklenmesi interval ile ilgili yani değerleri ✔️
+// *: interval ile başlatmadan önce bir kere yüklemelisin ✔️
 
 <template>
     <div class="countdown-container">
-        <div class="countdown-header countdown-title">
-            <span>Gün</span>
-            <span>Saat</span>
-            <span>Dakika</span>
-        </div>
-        <div class="countdown-header countdown-values">
-            <span>{{displayDays}}</span>
-            <span>{{displayHours}}</span>
-            <span>{{displayMinutes}}</span>
+        <div class="background-container"></div>
+        
+        <div class="content">
+            <span id="content-title">Etkinliğin Başlamasına</span>
+            <div class="content-countdown">
+                <div class="countdown-values-container">
+                    <div class="value">
+                        {{displayDays}}
+                        <div class="title">Gün</div>    
+                    </div>
+                    <div>/</div>
+                    <div class="value">
+                        {{displayHours}}
+                        <div class="title">Saat</div>    
+                    </div>
+                    <div>/</div>
+                    <div class="value">
+                        {{displayMinutes}}
+                        <div class="title">Dakika</div>    
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 
-const endDate = new Date(2021, 11, 12, 0, 0, 0, 0);
-const now = new Date();
-
 export default {
     data: () => ({
-        clockUpdateTime: 60 * 1000,
         displayDays: 0,
         displayHours: 0,
         displayMinutes: 0,
+        endDate: new Date(2021, 11, 12, 0, 0, 0, 0),
+        now: new Date()
     }),
     computed: {
         _minutes: () => 1000 * 60,
@@ -37,33 +48,26 @@ export default {
         },
         _days() {
             return this._hours * 24;
+        },
+        _distance() {
+            return this.endDate - this.now; 
         }
     },
     mounted() {
-
-        const distance = endDate.getTime() - now.getTime();
-
-        this.setDateValues(distance);
-        this.showRemaining();
+        this.updateDisplay();
+        this.startCountdown();
     },
     methods: {
-        showRemaining() {
-            const timer = setInterval(() => {
-                const distance = endDate.getTime() - now.getTime();
-
-                if (distance < 0) {
-                    clearInterval(timer);
-                    return;
-                }
-
-                this.setDateValues(distance);
-
-            }, this.clockUpdateTime);
+        startCountdown() {
+            setInterval(() => {
+                this.now = new Date();
+                this.updateDisplay();
+            }, 1000);
         },
-        setDateValues(distance) {
-            const days = Math.floor(distance / this._days);
-            const hours = Math.floor((distance % this._days) / this._hours);
-            const minutes = Math.floor((distance % this._hours) / this._minutes);
+        updateDisplay() {
+            const days = Math.floor(this._distance / this._days);
+            const hours = Math.floor((this._distance % this._days) / this._hours);
+            const minutes = Math.floor((this._distance % this._hours) / this._minutes);
 
             this.displayDays = days < 10 ? "0" + days : days;
             this.displayHours = hours < 10 ? "0" + hours : hours;
@@ -74,30 +78,63 @@ export default {
 </script>
 
 <style scoped>
-
 .countdown-container {
-    background-color: #7e7e7e;
-    color: white;
-    width: 30%;
-    margin: 0 auto;
-    padding: 10px;
+    width: 100%;
+    height: 400px;
+    top: -165px;
+
+    z-index: -1;
+
+    position: relative;
 }
-.countdown-header {
-    width: 90%;
-    margin: 0 auto;
+.content {
+    height: 100%;
+    padding: 15px;
+
+    display: flex;
+    justify-content: center;    
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+}
+.content #content-title {
+    font-weight: 600;
+    font-size: 4rem;
+}
+.content .content-countdown {
+    width: 70%;
+    margin: 10px 0;
+}
+.content .countdown-values-container {
+    font-size: 9.5rem;
+    font-weight: 200;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.countdown-header span {
-    text-align: center;
-    width: 110px;
+.content .countdown-values-container .value {
+    position: relative;
 }
-.countdown-header.countdown-title span {
-    font-size: 1.6rem;
-}
-.countdown-header.countdown-values span{
-    font-size: 3rem;
-}
+.content .countdown-values-container .value .title {
+    bottom: -55px;
+    left: 50%;
 
+    transform: translate(-50%, -50%);
+    position: absolute;
+
+    font-size: 2rem;
+    font-weight: 300;
+}
+.background-container {
+    width: 100%;
+    height: 550px;
+    z-index: -1;
+
+    position: absolute;
+    bottom: 0;
+
+    background-color: cadetblue;
+}
 </style>

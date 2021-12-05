@@ -15,10 +15,10 @@ export default {
     box-sizing: border-box;
 }
 #app {
-    font-family: "Century Gothic", sans-serif;
+    font-family: 'Readex Pro', sans-serif;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
+    color: #121624;
 }
 </style>
