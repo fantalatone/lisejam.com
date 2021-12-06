@@ -80,21 +80,27 @@ export default {
 <style scoped>
 .countdown-container {
     width: 100%;
-    height: 400px;
-    top: -165px;
+    height: 260px;
 
-    z-index: -1;
+    /* background-color: slateblue; */
 
     position: relative;
 }
 .content {
-    height: 100%;
+    height: 425px;
+    width: 100%;
     padding: 15px;
+    bottom: 0px;
+
+    z-index: -1;
+
+    position: absolute;
 
     display: flex;
     justify-content: center;    
     flex-direction: column;
     align-items: center;
+    /* background-color: springgreen; */
 
     color: white;
 }
@@ -129,12 +135,13 @@ export default {
 }
 .background-container {
     width: 100%;
-    height: 550px;
+    height: 750px;
     z-index: -1;
 
     position: absolute;
     bottom: 0;
 
-    background-color: cadetblue;
+    background-color: lightseagreen;
+    /* background: linear-gradient(0deg, #0A8FBD 10%, #A1E4E9 80%); */
 }
 </style>

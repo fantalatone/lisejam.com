@@ -19,6 +19,6 @@ export default {
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #121624;
+    color: #121212;
 }
 </style>

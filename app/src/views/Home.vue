@@ -1,12 +1,13 @@
 <template>
-    <!-- <Nav /> -->
     <Header />
 
     <Countdown />
 
     <main class="content">
         <section class="content-section" id="lisejam-nedir">
-            <h1 class="section-title">LİSEJAM NEDİR?</h1>
+            <div class="section-title">
+                <h1>LİSEJAM NEDİR?</h1>
+            </div>
             <div class="section-text">
                 <p>LiseJam, liseli genç takımların toplanıp 48 saat içerisinde verilen temaya göre oyun geliştirdikleri liseler arası ONLINE bir etkinliktir.</p>
             </div>
@@ -19,9 +20,14 @@
                 </ul>
             </div>
         </section>
+
+        <Divider />
+        
         <section class="content-section" id="nasil-katilinir">
             <div class="left">
-                <h1 class="section-title">Nasıl Katılınır?</h1>
+                <div class="section-title">
+                    <h1>Nasıl Katılınır?</h1>
+                </div>
                 <div class="section-text">
                     <ul>
                         <li>1- İlk olarak <router-link to="kayit">"lisejam.com/kayit"</router-link> adresine giriniz.</li>
@@ -34,9 +40,24 @@
                 <iframe width="560" height="320" src="https://www.youtube-nocookie.com/embed/uK_wk3Ag63U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </section>
+        <Divider />
+        <section class="content-section" id="rules">
+            <div class="section-title">
+                <h1>Kurallar</h1>
+            </div>
+            <div class="section-text">
+                <ul>
+                    <li>1- Hile yapmak yasaktır.</li>
+                    <li>2- Eğlenmemek yasaktır.</li>
+                </ul>
+            </div>
+        </section>
+        <Divider />
         <section class="content-section" id="faq">
-            <h1 class="section-title">S.S.S.</h1>
-            <div>
+            <div class="section-title">
+                <h1>S.S.S.</h1>
+            </div>
+            <div class="section-text">
                 <ul>
                     <li>A</li>
                 </ul>
@@ -44,43 +65,52 @@
         </section>
     </main>
 
+    <footer>
+        <h1>Arda Kara</h1>
+    </footer>
+
 </template>
 
 <script>
 import Header from "../components/Header.vue"
 import Countdown from "../components/Countdown.vue"
-// import Nav from "../components/Nav.vue"
+import Divider from "../components/Divider.vue"
 
 export default {
     name: "Index",
     components: {
         Header,
-        // Nav
-        Countdown
+        Countdown,
+        Divider
     }
 }
 </script>
 
 <style scoped>
-.content {
-    margin: -10rem 0;
-}
 .content-section {
     width: 100%;
-    margin: 2rem 0;
 
-    color: #121624;
+    color: #000000;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background-color: lightcoral;
 }
 .section-title {
+    color: white;
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #000000;
+}
+.section-title h1 {
     font-size: 3.5rem;
-    text-align: center;
+    z-index: 1;
 }
 .section-text {
     margin: 1rem 0;
@@ -89,18 +119,38 @@ export default {
 }
 #lisejam-nedir {
     height: 400px;
+    padding: 0 90px;
 }
-
 #lisejam-nedir .section-text {
     width: 55%;
 }
 #nasil-katilinir {
-    height: 350px;
+    height: 400px;
     flex-direction: row;
     padding: 30px 90px;
+    background-color: springgreen;
+    /* background-image: url("../../assets/questions2.svg");
+    background-size: cover; */
+}
+/* #nasil-katilinir .section-title {
+    background-image: url("../../assets/questions3.svg");
+    background-size: 200%;
+    background-repeat: no-repeat;
+} */
+#nasil-katilinir .section-text {
+    padding: 0px 20px;
 }
 #faq {
     height: 500px;
+    padding: 0 90px;
+    background-image: url("../../assets/questions2.svg");
+    background-size: cover;
+    background-color: #00ADB5;
+}
+#faq .section-title {
+    background-image: url("../../assets/questions3.svg");
+    background-size: 150%;
+    background-repeat: no-repeat;
 }
 .left {
     width: 50%;
@@ -108,7 +158,7 @@ export default {
 .right {
     width: 50%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 #prizes {

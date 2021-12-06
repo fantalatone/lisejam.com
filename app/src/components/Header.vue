@@ -85,10 +85,10 @@ export default {
     background-position: center;
     background-size: 1920px;
     background-attachment: fixed;
-
+    
     mask: url("../../assets/wave.svg");
     mask-size: 101%;
-    mask-position: 0px -1px;
+    mask-position: -1px -1px;
     mask-repeat: no-repeat;
 }
 </style>
